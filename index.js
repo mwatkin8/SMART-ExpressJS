@@ -10,8 +10,7 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, '/public/')));
 
 //-------SMART launch params---------
-let client = "REPLACE-WITH-CLIENT-ID-FROM-SANDBOX"; //Given by sandbox when registering
-let secret = null; // Would use in live implementation, null for testing
+let client = "72d05a82-ca74-449b-bc42-871caa29fd91"; //Given by sandbox when registering
 let server,launch,redirect,authUri,tokenUri;
 
 app.get('/smart-launch', async (request, response) => {
@@ -64,7 +63,7 @@ app.get('/', async (request, response) => {
     token = res.access_token;
     patient = res.patient;
     let dem = await demographics()
-    response.render('index',{name:dem[0],gender:dem[1],age:dem[2]});
+    response.render('index',{name:dem[0],gender:dem[1],age:dem[2],test_var:'this is a test'});
 });
 
 async function getResource(url){

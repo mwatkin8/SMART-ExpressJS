@@ -44,7 +44,17 @@ Paste the ID there so that it looks something like this (but with your ID):<br>
 ## 2. Start the app server
 This project uses a Docker image to include the needed dependencies for the app server. Follow [this guide](https://docs.docker.com/install/) to install Docker on your machine and check installation success with <code>docker -v</code>. Then follow [this guide](https://docs.docker.com/compose/install/) to install Docker Compose and check that installation with <code>docker-compose -v</code>.
 
-Launch the server with the command <code>docker-compose up --build</code>
+Launch the server with the command <code>docker-compose -p <i>projectName</i> up --build &</code>
+
+* View server output: <code>docker logs <i>projectName</i>\_app_1</code>
+* Stop server: <code>docker stop <i>projectName</i>\_app_1</code>
+* Start server again: <code>docker start <i>projectName</i>\_app_1</code>
+* To wipe a previous build if you want to start over:
+    * <code>docker stop <i>projectName</i>\_app_1</code>
+    * <code>docker rm <i>projectName</i>\_app_1</code>
+    * <code>docker rmi <i>projectName</i>\_app</code>
+    * <code>docker volume prune</code>
+
 
 ## 3. Perform a SMART launch
 From the sandbox, launch your app and select a patient. The type of SMART launch we defined when registering our app depends on a patient (learn more about scopes [here](http://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context/index.html)). You'll see that the app redirects to the HSPC authorization server where you are prompted to authorize the app. Once authorized, you are taken to the app where this example demonstrates how to use the auth token to query the Patient resource and how to parse out the patient name, gender, and age.
