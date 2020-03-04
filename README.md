@@ -6,8 +6,15 @@ Architecture uses [Express](https://expressjs.com/).<br>
 Templating done via [EJS](https://ejs.co/).<br>
 Front-end display uses Bootstrap's [Dashboard](https://getbootstrap.com/docs/4.0/examples/) example (v4.0).
 
+## 1. Install Docker
+This example uses Docker, the links below can help you get Docker installed.
+* Mac users: https://www.docker.com/products/docker-desktop
+    * Follow installer
+* Windows users: https://github.com/docker/toolbox/releases
+    * Download latest .exe file
+    * Follow installer
 
-## 1. Create a SMART on FHIR sandbox
+## 2. Create a SMART on FHIR sandbox
 This app was developed using an [HSPC Logica Sandbox](https://sandbox.logicahealth.org/) as the launch environment.<br>
 Create an account and then create a new sandbox making sure that you use FHIR version R4, allow an open FHIR endpoint, and import sample patients, practitioners, and applications.
 
@@ -29,6 +36,8 @@ App Launch URI: <code>http://localhost:8080/smart-launch</code><br>
 App Redirect URI: <code>http://localhost:8080/</code><br>
 Scopes: <code>launch patient/\*.\*</code>
 
+<u><b>IMPORTANT</b></u> - if you are a Windows user and installed Docker Toolbox, your app won't be deployed on localhost but on a default IP address. The standard IP used by Docker Toolbox is <code>192.168.99.100</code> but yours could be different. Check the top of the terminal window (by the whale) for your Docker machine IP. Use the same URIs as above but replace "localhost" with your IP.
+
 ![params](readme_imgs/params.png)
 
 After saving, you will be given a client ID.
@@ -41,8 +50,8 @@ At the top of this file you will see: <br><code>let client = "REPLACE-WITH-CLIEN
 Paste the ID there so that it looks something like this (but with your ID):<br>
 <code>let client = "420c747a-e456-4487-808e-5de56c1be831"</code><br> Save the file
 
-## 2. Start the app server
-This project uses a Docker image to include the needed dependencies for the app server. Follow [this guide](https://docs.docker.com/install/) to install Docker on your machine and check installation success with <code>docker -v</code>. Then follow [this guide](https://docs.docker.com/compose/install/) to install Docker Compose and check that installation with <code>docker-compose -v</code>.
+## 3. Start the app server
+Open the terminal app (Mac) or the Docker terminal (Windows), go to the home directory of this project.
 
 Launch the server with the command <code>docker-compose -p <i>projectName</i> up --build &</code>
 
@@ -56,7 +65,7 @@ Launch the server with the command <code>docker-compose -p <i>projectName</i> up
     * <code>docker volume prune</code>
 
 
-## 3. Perform a SMART launch
+## 4. Perform a SMART launch
 From the sandbox, launch your app and select a patient. The type of SMART launch we defined when registering our app depends on a patient (learn more about scopes [here](http://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context/index.html)). You'll see that the app redirects to the HSPC authorization server where you are prompted to authorize the app. Once authorized, you are taken to the app where this example demonstrates how to use the auth token to query the Patient resource and how to parse out the patient name, gender, and age.
 
 ![dashboard](readme_imgs/dashboard.png)
