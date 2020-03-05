@@ -19,7 +19,7 @@ app.get('/smart-launch', async (request, response) => {
     //Launch context parameter
     launch = request.query.launch;
     //Permission to launch and read/write all resources for the launch patient
-    let scope = ["patient/*.*","launch"].join(" ");
+    let scope = ["patient/*.read","launch"].join(" ");
     //Random session key
     let state = Math.round(Math.random()*100000000).toString();
     //Set redirect to the app landing page - CHANGE TO DYNAMICALLY DETECT PROTOCOL IF NOT USING LOCALHOST
