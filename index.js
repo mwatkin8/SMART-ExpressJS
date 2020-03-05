@@ -10,7 +10,7 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, '/public/')));
 
 //-------SMART launch params---------
-let client = "72d05a82-ca74-449b-bc42-871caa29fd91"; //Given by sandbox when registering
+let client = "PUT-CLIENT-ID-HERE"; //Given by sandbox when registering
 let server,launch,redirect,authUri,tokenUri;
 
 app.get('/smart-launch', async (request, response) => {
